@@ -1,0 +1,15 @@
+---
+- name: Stop Django Application
+  block:
+      - name: Stop Django Application
+        ansible.builtin.systemd:
+          name: django_app
+          state: stopped
+          
+      - name: Confirm if Django application is stopped
+        ansible.builtin.shell: "systemctl status django_app"
+        register: django_app_status
+
+      - name: Handle error if Django application failed to stop
+        when: django_app_status.rc == 0
+        fail: "Failed to stop Django application"

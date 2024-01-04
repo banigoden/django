@@ -1,0 +1,6 @@
+all:
+  hosts:
+    debian_container:
+      ansible_host: 127.0.0.1
+      ansible_port: 2222  # Host port mapped to SSH port in the container
+      ansible_user: root

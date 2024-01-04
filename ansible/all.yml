@@ -1,0 +1,8 @@
+---
+- name: All configs
+  hosts: debian_container
+  gather_facts: false
+  roles:
+      - deploy_django_rest
+
+

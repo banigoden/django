@@ -1,0 +1,177 @@
+---
+
+- name: Print a message
+  debug:
+    msg: 'Hello from Ansible!'
+
+
+- name:  Install required packages
+  apt:
+    name: "{{ item }}"
+    state: present
+  with_items: 
+    - python3-dev
+    - python3-pip
+    - python-virtualenv
+    - libpq-dev 
+    - postgresql 
+    - postgresql-contrib
+    - curl
+
+# - name: Ensure Python is installed
+#   community.general.homebrew:
+#     name: python@3
+#     state: present
+#   when: ansible_facts['os_family'] == 'Darwin' and not ansible_facts['system_info']['python_version']
+
+
+# - name: Check if PostgreSQL is installed
+#   ansible.builtin.command: "psql --version"
+#   ignore_errors: true
+#   register: postgresql_check
+
+# - name: Debug PostgreSQL check result
+#   ansible.builtin.debug:
+#     var: postgresql_check
+
+# - name: Install PostgreSQL using Homebrew
+#   community.general.homebrew:
+#     name: postgresql
+#     state: present
+#   when: postgresql_check is failed
+
+
+# - name: Copy Django application source code
+#   ansible.builtin.copy:
+#     src: "{{ role_path }}/files/django"
+#     dest: "{{ django_app_remote_path }}"
+#     remote_src: yes
+
+# - name: Python config
+#   block:
+#     - name: Create a virtual environment
+#       ansible.builtin.pip:
+#         name: virtualenv
+#         state: present
+#         virtualenv_command: python3 -m venv
+#         virtualenv: "{{ django_app_virtualenv }}"
+
+#     - name: Install specified python requirements in indicated (virtualenv)
+#       ansible.builtin.pip:
+#         requirements: "{{ role_path }}/files/requirements.txt"
+#         executable: "{{ django_app_virtualenv }}/bin/pip"
+
+#     - name: Prepare environment for local run
+#       template:
+#         src: "{{ role_path }}/templates/django_app_local.service.j2"
+#         dest: /path/to/local/deployment/folder/django_app_local.service
+#       notify: Restart Django App
+######################################
+
+  # - name: Copy database backup file
+  #   copy:
+  #     src: /path/to/backup_file.sql
+  #     dest: /tmp/backup_file.sql
+
+  # - name: Restore database
+  #     command: "psql -U your_database_user -d your_database_name < /tmp/backup_file.sql"  
+
+
+########
+# - name : Python config    
+#   block: 
+#     - name: Create a virtual environment
+#       ansible.builtin.pip:
+#         name: virtualenv
+#         state: present
+
+# - name: Install Python dependencies using pip
+#   pip:
+#     requirements: "{{ django_app_remote_path }}/requirements.txt"
+#     virtualenv: "{{ django_app_virtualenv }}"
+#   become: true
+
+
+
+      # - name: PostgreSQL configuration 
+      #   block: 
+
+      #     - name: Install PostgreSQL
+      #       ansible.builtin.brew:
+      #         name: 
+      #           - postgresql
+      #           - postgresql-contrib
+      #           #- "{{ base_python_package }}-psycopg2"
+      #         state: present
+      #       tags: packages
+      #       when: postgresql_check|failed
+
+      #     - name: Ensure the PostgreSQL service is running
+      #       ansible.builtin.service:
+      #         name: postgresql
+      #         state: started
+      #         enabled: true
+      #         use: sysvinit
+
+      #     # - name: Create PostgreSQL database
+      #     #   postgresql_db:
+      #     #     name: "denisbandurin"
+      #     #     state: present
+
+      #     # - name: Create PostgreSQL user
+      #     #   postgresql_user:
+      #     #     name: "web_user"
+      #     #     password: "pass1234"
+      #     #     encrypted: "md5"
+      #     #     state: present
+
+      #     # - name: Grant privileges to PostgreSQL user
+      #     #   ansible.builtin.postgresql_privs:
+      #     #     database: "denisbandurin"
+      #     #     role: "web_user"
+      #     #     priv: "ALL PRIVILEGES"
+      #     #     state: present
+
+      #     - name: Restore database
+      #       postgresql_restore:
+      #         source: /files/backup_file.sql
+      #         target: denisbandurin
+      #         state: present
+
+      #     # - name: Remove temporary backup file
+      #     #   file:
+      #     #     path: /files/backup_file.sql
+      #     #     state: absent
+      #     - name: Ensure user has access to the database
+      #       become: true
+      #       become_user: postgres
+      #       community.postgresql.postgresql_user: 
+      #         db={{ db_name }}
+      #         name={{ db_user }}
+      #         password={{ db_password }}
+      #         encrypted=yes
+      #         state=present
+
+      ######################################################
+          
+      #     - name: Ensure no existing virtualenv exists
+      #       ansible.builtin.file:
+      #         state: absent
+      #         path: "{{ django_app_virtualenv }}"
+
+      #     - name: Create the virtualenv
+      #       ansible.builtin.command: virtualenv -p /users/denisbandurin/bin/python3 {{/tmp/django_app/venv }}
+      #       args:
+      #         creates: "/tmp/django_app/venv"
+
+
+      #     # - name: Install setuptools into venv
+      #     #   pip:
+      #     #     name: Setuptools==36.1
+      #     #     virtualenv: '{{ django_app_remote_path }}'
+
+    
+        
+
+
+          

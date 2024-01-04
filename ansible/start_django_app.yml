@@ -1,0 +1,15 @@
+---
+- name: Start Django application
+  block:
+    - name: Start Django application
+      ansible.builtin.systemd: 
+        name: django_app
+        state: started
+
+    - name: Confirm if Django applcation is running
+      ansible.builtin.shell: "   start django_app"
+      register: sjango_app_status
+
+    - name: Handler error if Django application not runnig
+      when: django_app_status.rc != 0
+      fail: "Failed to start Django application"
