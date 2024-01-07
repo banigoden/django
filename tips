@@ -1,0 +1,45 @@
+pg_dump -U web_user -h localhost -p 5432 -d denisbandurin > backup.sql
+psql -U web_user -h localhost -p 5432 -d denisbandurin -f backup.sql
+
+
+ 'ENGINE': 'django.db.backends.postgresql',
+        'NAME': 'denisbandurin',
+        'USER': 'web_user',
+        'PASSWORD': 'pass1234',
+        'HOST': 'postgres',
+        'PORT': '5432',
+
+{
+  "first_name": "Joy",
+  "second_name": "Schmit",
+  "email": "joy.schmit@example.com",
+  "department": "IT",
+  "level": 2,
+  "date": "2024-01-09"
+}
+
+ls  ~/Library/LaunchAgents/
+
+sudo launchctl list | grep com.example.gunicorn 
+
+launchctl stop com.example.gunicorn 
+
+launchctl load  /Library/LaunchDaemons/com.example.gunicorn.plist
+launchctl unload  /Library/LaunchDaemons/com.example.gunicorn.plist
+
+sudo launchctl bootout gui/$(id -u)/com.example.gunicorn
+
+
+/tmp/django_app/venv/bin/gunicorn
+denisbandurin@Deniss-Mac-mini ansible % launchctl stop com.example.gunicorn       
+denisbandurin@Deniss-Mac-mini ansible % launchctl list | grep com.example.gunicorn
+
+sudo launchctl load /Users/denisbandurin/Desktop/check24/ansible/django_app_local.service
+
+python3 -c "from jinja2 import Template; print(Template(open('/Users/denisbandurin/Desktop/check24/ansible/deploy_django_rest/templates/django_app.plist.j2').read()).render(django_app_virtualenv='/tmp/django_app/venv', django_app_remote_path='/tmp/django_app'))"
+
+http://localhost:8000/api/filtered/first_name/denis
+http://localhost:8000/api/filtered/first_name/denis
+http://localhost:8000/api/employee/2
+
+The reason why the launchctl unload command doesn't work in Ansible is because Ansible's command module doesn't support the unload option for the launchctl command. This is a limitation of the command module, and there is no workaround for this at this time.

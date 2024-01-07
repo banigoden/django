@@ -21,15 +21,5 @@ EXPOSE 8000
 # Run app.py when the container launches
 CMD ["python", "manage.py", "runserver", "0.0.0.0:8000"]
 
-# RUN mkdir /app
-# WORKDIR /app
-# COPY ./requirements.txt /app/
-# RUN pip install --upgrade pip
-# RUN pip install -r requirements.txt
-
-
-# COPY . /app/
-# COPY ./web_application /app/
-# COPY ./manage.py /app/
-
-# CMD ["python", "manage.py", "runserver", "0.0.0.0:8000"]
+# Command to initialize the database and run the application !!give execute permissions chmod +x entrypoint.sh
+# CMD ["./entrypoint.sh"]
