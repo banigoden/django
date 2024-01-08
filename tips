@@ -2,6 +2,7 @@ pg_dump -U web_user -h localhost -p 5432 -d denisbandurin > backup.sql
 psql -U web_user -h localhost -p 5432 -d denisbandurin -f backup.sql
 
 
+
  'ENGINE': 'django.db.backends.postgresql',
         'NAME': 'denisbandurin',
         'USER': 'web_user',
@@ -18,7 +19,19 @@ psql -U web_user -h localhost -p 5432 -d denisbandurin -f backup.sql
   "date": "2024-01-09"
 }
 
-ls  ~/Library/LaunchAgents/
+Run the Loaddata Management Command:
+python manage.py loaddata employees.json
+
+Verify the Data:
+psql -U your_username -d your_database_name
+
+Check postgresql servise
+ brew services list
+
+ brew services stop postgresql@14
+ brew services start postgresql@14
+
+ansible-vault --help
 
 sudo launchctl list | grep com.example.gunicorn 
 
@@ -26,13 +39,14 @@ launchctl stop com.example.gunicorn
 
 launchctl load  /Library/LaunchDaemons/com.example.gunicorn.plist
 launchctl unload  /Library/LaunchDaemons/com.example.gunicorn.plist
+sudo launchctl bootout 
 
 sudo launchctl bootout gui/$(id -u)/com.example.gunicorn
 
 
 /tmp/django_app/venv/bin/gunicorn
-denisbandurin@Deniss-Mac-mini ansible % launchctl stop com.example.gunicorn       
-denisbandurin@Deniss-Mac-mini ansible % launchctl list | grep com.example.gunicorn
+launchctl stop com.example.gunicorn       
+launchctl list | grep com.example.gunicorn
 
 sudo launchctl load /Users/denisbandurin/Desktop/check24/ansible/django_app_local.service
 

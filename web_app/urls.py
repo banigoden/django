@@ -24,5 +24,6 @@ from django.urls import path, include
 """
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('api/', include('web_application.urls')),
+    path('api/', include('web_application.urls')), 
 ]
+# allows referencing other URLconfs.

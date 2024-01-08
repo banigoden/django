@@ -1,14 +1,15 @@
-# Use an official Python runtime as a parent image
-FROM python:3.11.6
+# Use an official Python runtime as a parent image. Need specific versions to improve stability 
+FROM python:3.11.6 
 
+#LABEL maintainer="djangoapp.com"
 # Set environment variables for Python
 ENV PYTHONDONTWRITEBYTECODE 1
 ENV PYTHONUNBUFFERED 1
 
-# Set the working directory to /app
+# Set the working directory 
 WORKDIR /app
 
-# Copy the current directory contents into the container at /app
+# Copy the current directory contents into the container 
 COPY . /app
 
 # Install any needed packages specified in requirements.txt

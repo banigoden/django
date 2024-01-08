@@ -1,0 +1,62 @@
+[
+    {
+        "model": "web_application.employee",
+        "pk": 1,
+        "fields": {
+            "first_name": "John",
+            "second_name": "Doe",
+            "department": "IT",
+            "email": "john.doe@example.com",
+            "date": "2023-01-01",
+            "level": 3
+        }
+    },
+    {
+        "model": "web_application.employee",
+        "pk": 2,
+        "fields": {
+            "first_name": "Jane",
+            "second_name": "Smith",
+            "department": "HR",
+            "email": "jane.smith@example.com",
+            "date": "2023-02-15",
+            "level": 4
+        }
+    },
+    {
+        "model": "web_application.employee",
+        "pk": 3,
+        "fields": {
+            "first_name": "Bob",
+            "second_name": "Johnson",
+            "department": "Finance",
+            "email": "bob.johnson@example.com",
+            "date": "2023-03-20",
+            "level": 2
+        }
+    },
+    {
+        "model": "web_application.employee",
+        "pk": 4,
+        "fields": {
+            "first_name": "Alice",
+            "second_name": "Williams",
+            "department": "Marketing",
+            "email": "alice.williams@example.com",
+            "date": "2023-04-10",
+            "level": 5
+        }
+    },
+    {
+        "model": "web_application.employee",
+        "pk": 5,
+        "fields": {
+            "first_name": "Charlie",
+            "second_name": "Brown",
+            "department": "IT",
+            "email": "charlie.brown@example.com",
+            "date": "2023-05-05",
+            "level": 3
+        }
+    }
+]

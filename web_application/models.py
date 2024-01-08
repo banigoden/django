@@ -2,6 +2,8 @@ from django.db import models
 from django.core.validators import MaxValueValidator, MinValueValidator
 from django.urls import reverse
 
+#A model is the single, definitive source of information about your data. 
+# It contains the essential fields and behaviors of the data you’re storing. 
 class Employee(models.Model):
     first_name = models.CharField(max_length=100)
     second_name = models.CharField(max_length=100)

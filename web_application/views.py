@@ -1,5 +1,9 @@
 from django.shortcuts import get_object_or_404, render
+from django.http import JsonResponse
+from django.views.decorators.csrf import csrf_exempt
+from django.views.decorators.http import require_POST
 from .models import Employee
+from .serializers import EmployeeSerializer
 
 
 def index(request):
@@ -62,5 +66,20 @@ def filtered_employees_field_value(request, field , value):
 
     return render(request, "web_application/filtered_employees.html", context=context)
 
+@csrf_exempt
+@require_POST
+def create_employee(request):
+    # Deserialize the JSON data from the request
+    serializer = EmployeeSerializer(data=request.POST)
+    
+    if serializer.is_valid():
+        # Save the new employee
+        serializer.save()
+
+        # Return a JSON response with the created employee details
+        return JsonResponse(serializer.data, status=201)
+
+    # If the data is not valid, return an error response
+    return JsonResponse(serializer.errors, status=400)
 
  
