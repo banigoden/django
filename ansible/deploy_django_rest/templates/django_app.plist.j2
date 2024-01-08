@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+    <key>Label</key>
+    <string>com.django.django_app</string>
+    <key>ProgramArguments</key>
+    <array>
+        <string>/tmp/django_app/venv/bin/python3</string>
+        <string>/tmp/django_app/web_app/manage.py</string>
+        <string>runserver</string>
+        <string>0.0.0.0:8000</string>
+    </array>
+    <key>WorkingDirectory</key>
+    <string>/tmp/django_app/web_app</string>
+    <key>StandardOutPath</key>
+    <string>/tmp/django_app/web_app/logs/django_app.log</string>
+    <key>StandardErrorPath</key>
+    <string>/tmp/django_app/web_app/logs/django_app_error.log</string>
+    <key>RunAtLoad</key>
+    <true/>
+    <key>KeepAlive</key>
+    <dict>
+        <key>SuccessfulExit</key>
+        <false/>
+    </dict>
+</dict>
+</plist>

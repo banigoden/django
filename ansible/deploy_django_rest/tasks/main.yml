@@ -1,0 +1,58 @@
+---
+
+- name: Check Python version
+  ansible.builtin.command: python3 --version
+  register: python_version_output
+
+- name: Print Python version
+  ansible.builtin.debug:
+    msg: "{{ python_version_output.stdout }}"
+
+
+- name: Check if PostgreSQL is installed
+  ansible.builtin.command: "psql --version"
+  ignore_errors: true
+  register: postgresql_check
+
+- name: Debug PostgreSQL check result
+  ansible.builtin.debug:
+    var: postgresql_check
+
+- name: Install PostgreSQL using Homebrew
+  community.general.homebrew:
+    name: postgresql
+    state: present
+  when: postgresql_check is failed
+
+  #via ssh use scp
+- name: Copy Django application source code
+  ansible.builtin.copy:
+    src: "{{ role_path }}/files/web_app"
+    dest: "{{ django_app_remote_path }}"
+    remote_src: yes
+
+- name: Python config
+  block:
+    - name: Create a virtual environment
+      ansible.builtin.pip:
+        name: virtualenv
+        state: present
+        virtualenv_command: python3 -m venv
+        virtualenv: "{{ django_app_virtualenv }}"
+
+    - name: Install specified python requirements in indicated (virtualenv)
+      ansible.builtin.pip:
+        requirements: "{{ role_path }}/files/requirements.txt"
+        executable: "{{ django_app_virtualenv }}/bin/pip"
+
+    - name: Deploy custom django job definition
+      template:
+        src: "{{ role_path }}/templates/com.example.gunicorn.plist"
+        dest: /Library/LaunchDaemons/
+
+
+    
+        
+
+
+          

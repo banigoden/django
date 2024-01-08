@@ -1,0 +1,9 @@
+---
+- name: All configs
+  hosts: localhost
+  gather_facts: false
+  roles:
+      - deploy_django_rest
+      
+
+
