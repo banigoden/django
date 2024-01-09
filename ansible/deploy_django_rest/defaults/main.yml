@@ -1,8 +1,0 @@
----
-
-# django_app_remote_path: /users/denisbandurin/Downloads/check24_test/django_app/
-# django_app_virtualenv : /Users/denisbandurin/Downloads/check24_test/django_app/venv
-django_app_remote_path: /tmp/django_app
-django_app_virtualenv : /tmp/django_app/venv
-role_path             : /Users/denisbandurin/Desktop/check24/ansible/deploy_django_rest
-

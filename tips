@@ -1,3 +1,15 @@
+Create a Django Project
+django-admin startproject myproject
+Create a Django App
+python manage.py startapp myapp
+
+pip install djangorestframework
+
+Install psycopg2
+pip install psycopg2-binary
+psql
+
+
 pg_dump -U web_user -h localhost -p 5432 -d denisbandurin > backup.sql
 psql -U web_user -h localhost -p 5432 -d denisbandurin -f backup.sql
 
@@ -22,6 +34,10 @@ psql -U web_user -h localhost -p 5432 -d denisbandurin -f backup.sql
 Run the Loaddata Management Command:
 python manage.py loaddata employees.json
 
+or
+
+python manage.py populate_models in case python file .py 
+
 Verify the Data:
 psql -U your_username -d your_database_name
 
@@ -43,6 +59,8 @@ sudo launchctl bootout
 
 sudo launchctl bootout gui/$(id -u)/com.example.gunicorn
 
+
+curl -u username:password http://localhost:8000/admin
 
 /tmp/django_app/venv/bin/gunicorn
 launchctl stop com.example.gunicorn       
