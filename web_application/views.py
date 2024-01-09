@@ -2,8 +2,11 @@ from django.shortcuts import get_object_or_404, render
 from django.http import JsonResponse
 from django.views.decorators.csrf import csrf_exempt
 from django.views.decorators.http import require_POST
+from rest_framework.response import Response
+from rest_framework import status
 from .models import Employee
 from .serializers import EmployeeSerializer
+import json
 
 
 def index(request):
@@ -69,17 +72,20 @@ def filtered_employees_field_value(request, field , value):
 @csrf_exempt
 @require_POST
 def create_employee(request):
+    try:
     # Deserialize the JSON data from the request
-    serializer = EmployeeSerializer(data=request.POST)
+        data = json.loads(request.body)
+        serializer = EmployeeSerializer(data=data)
     
-    if serializer.is_valid():
+        if serializer.is_valid():
         # Save the new employee
-        serializer.save()
+           serializer.save()
 
         # Return a JSON response with the created employee details
         return JsonResponse(serializer.data, status=201)
 
     # If the data is not valid, return an error response
-    return JsonResponse(serializer.errors, status=400)
+    except json.JSONDecodeError:
+        return JsonResponse({"error": "Invalid JSON format"}, status=400)
 
  
